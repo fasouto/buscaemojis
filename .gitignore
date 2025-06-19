@@ -35,5 +35,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# AI generated data (optional - remove if you want to commit it)
-/lib/spanish-emoji-data.json
+# AI generated data is now included in the repository

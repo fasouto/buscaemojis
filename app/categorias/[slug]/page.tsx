@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import EmojiGrid from '@/components/EmojiGrid';
 import Link from 'next/link';
 import { Metadata } from 'next';
+import { Fragment } from 'react';
 
 interface CategoriaPageProps {
   params: {
@@ -50,8 +51,54 @@ export default async function CategoriaPage({ params }: CategoriaPageProps) {
     notFound();
   }
 
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://buscaemojis.es';
+  
+  const breadcrumbStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": baseUrl
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Categorías",
+        "item": `${baseUrl}/categorias`
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": group.spanishName,
+        "item": `${baseUrl}/categorias/${group.slug}`
+      }
+    ]
+  };
+
+  const collectionStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": group.spanishName,
+    "description": `Explora todos los emojis de ${group.spanishName.toLowerCase()}. ${group.emojis.length} emojis disponibles.`,
+    "url": `${baseUrl}/categorias/${group.slug}`,
+    "numberOfItems": group.emojis.length,
+    "inLanguage": "es-ES"
+  };
+
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <Fragment>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionStructuredData) }}
+      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="flex items-center justify-between mb-8">
         <div>
           <nav className="mb-4">
@@ -82,6 +129,7 @@ export default async function CategoriaPage({ params }: CategoriaPageProps) {
       </div>
 
       <EmojiGrid emojis={group.emojis} maxResults={200} />
-    </div>
+      </div>
+    </Fragment>
   );
 }

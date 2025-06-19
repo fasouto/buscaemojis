@@ -10,15 +10,43 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://buscaemojis.es'),
   title: 'BuscaEmojis - Busca emojis en español',
   description: 'La mejor herramienta para buscar emojis en español con referencias culturales, emociones y significados.',
-  keywords: 'emoji, emojis, español, buscar, emociones, cultura, spain',
+  keywords: 'emoji, emojis, español, buscar, emociones, cultura, spain, castellano, emoticones, símbolos',
   authors: [{ name: 'BuscaEmojis' }],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   openGraph: {
     title: 'BuscaEmojis - Busca emojis en español',
-    description: 'La mejor herramienta para buscar emojis en español',
+    description: 'La mejor herramienta para buscar emojis en español con referencias culturales, emociones y significados.',
     url: 'https://buscaemojis.es',
     siteName: 'BuscaEmojis',
     locale: 'es_ES',
     type: 'website',
+    images: [
+      {
+        url: '/icon-512.png',
+        width: 512,
+        height: 512,
+        alt: 'BuscaEmojis - Busca emojis en español',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary',
+    title: 'BuscaEmojis - Busca emojis en español',
+    description: 'La mejor herramienta para buscar emojis en español',
+    images: ['/icon-512.png'],
+  },
+  alternates: {
+    canonical: '/',
   },
 }
 
@@ -27,8 +55,38 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://buscaemojis.es'
+  
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "BuscaEmojis",
+    "description": "La mejor herramienta para buscar emojis en español con referencias culturales, emociones y significados.",
+    "url": baseUrl,
+    "inLanguage": "es-ES",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": `${baseUrl}/?q={search_term_string}`
+      },
+      "query-input": "required name=search_term_string"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "BuscaEmojis",
+      "url": baseUrl
+    }
+  }
+
   return (
     <html lang="es">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      </head>
       <body className={inter.className}>
         <ToastProvider>
           <div className="min-h-full">

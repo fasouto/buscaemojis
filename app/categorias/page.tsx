@@ -3,7 +3,16 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Categorías de Emojis - BuscaEmojis',
-  description: 'Explora emojis organizados por categorías: caritas, animales, comida, viajes y más.',
+  description: 'Explora emojis organizados por categorías: caritas y emociones, animales y naturaleza, comida y bebida, viajes y lugares, actividades, objetos, símbolos y banderas.',
+  keywords: 'categorías emoji, emojis por categorías, caritas, animales, comida, viajes, actividades, objetos, símbolos, banderas',
+  openGraph: {
+    title: 'Categorías de Emojis - BuscaEmojis',
+    description: 'Explora emojis organizados por categorías: caritas, animales, comida, viajes y más.',
+    type: 'website',
+  },
+  alternates: {
+    canonical: '/categorias',
+  },
 };
 
 async function fetchGroups() {

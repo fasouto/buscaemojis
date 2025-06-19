@@ -8,16 +8,9 @@ export const metadata: Metadata = {
 
 async function fetchGroups() {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/groups`, {
-      cache: 'force-cache'
-    });
-    
-    if (!response.ok) {
-      throw new Error('Failed to fetch groups');
-    }
-    
-    const data = await response.json();
-    return data.groups;
+    // Import the function directly instead of making HTTP request
+    const { getEmojiGroups } = await import('@/lib/emoji-data');
+    return getEmojiGroups();
   } catch (error) {
     console.error('Failed to fetch groups:', error);
     return [];
@@ -48,10 +41,10 @@ export default async function CategoriasPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {groups.map((group: any) => (
+        {groups && groups.length > 0 ? groups.map((group: any) => (
           <Link
             key={group.id}
-            href={`/categorias/${group.id}`}
+            href={`/categorias/${group.slug}`}
             className="block bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200"
           >
             <div className="flex items-center justify-between mb-4">
@@ -78,7 +71,12 @@ export default async function CategoriasPage() {
               Ver todos →
             </div>
           </Link>
-        ))}
+        )) : (
+          <div className="col-span-full text-center py-12">
+            <p className="text-gray-500 text-lg">No se pudieron cargar las categorías</p>
+            <p className="text-gray-400 text-sm mt-2">Por favor, recarga la página</p>
+          </div>
+        )}
       </div>
     </div>
   );

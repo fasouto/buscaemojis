@@ -5,30 +5,23 @@ import { Metadata } from 'next';
 
 interface CategoriaPageProps {
   params: {
-    id: string;
+    slug: string;
   };
 }
 
-async function fetchGroup(id: string) {
+async function fetchGroupBySlug(slug: string) {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/groups/${id}`, {
-      cache: 'force-cache'
-    });
-    
-    if (!response.ok) {
-      return null;
-    }
-    
-    const data = await response.json();
-    return data.group;
+    // Import the function directly instead of making HTTP request
+    const { getGroupBySlug } = await import('@/lib/emoji-data');
+    return getGroupBySlug(slug);
   } catch (error) {
-    console.error('Failed to fetch group:', error);
+    console.error('Failed to fetch group by slug:', error);
     return null;
   }
 }
 
 export async function generateMetadata({ params }: CategoriaPageProps): Promise<Metadata> {
-  const group = await fetchGroup(params.id);
+  const group = await fetchGroupBySlug(params.slug);
   
   if (!group) {
     return {
@@ -39,11 +32,19 @@ export async function generateMetadata({ params }: CategoriaPageProps): Promise<
   return {
     title: `${group.spanishName} - BuscaEmojis`,
     description: `Explora todos los emojis de ${group.spanishName.toLowerCase()}. ${group.emojis.length} emojis disponibles.`,
+    openGraph: {
+      title: `${group.spanishName} - BuscaEmojis`,
+      description: `Explora todos los emojis de ${group.spanishName.toLowerCase()}. ${group.emojis.length} emojis disponibles.`,
+      type: 'website',
+    },
+    alternates: {
+      canonical: `/categorias/${group.slug}`,
+    },
   };
 }
 
 export default async function CategoriaPage({ params }: CategoriaPageProps) {
-  const group = await fetchGroup(params.id);
+  const group = await fetchGroupBySlug(params.slug);
   
   if (!group) {
     notFound();

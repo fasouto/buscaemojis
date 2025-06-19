@@ -27,6 +27,19 @@ const spanishGroupNames: Record<number, string> = {
   9: 'Banderas',
 };
 
+const groupSlugs: Record<number, string> = {
+  0: 'caritas-y-emociones',
+  1: 'personas-y-cuerpo',
+  2: 'tonos-de-piel',
+  3: 'animales-y-naturaleza',
+  4: 'comida-y-bebida',
+  5: 'viajes-y-lugares',
+  6: 'actividades',
+  7: 'objetos',
+  8: 'simbolos',
+  9: 'banderas',
+};
+
 
 // Import AI-generated enhancements
 let aiEnhancements: Record<string, any> = {};
@@ -77,6 +90,7 @@ export function getEmojiGroups(): EmojiGroup[] {
         id: emoji.group,
         name: emoji.group.toString(),
         spanishName: spanishGroupNames[emoji.group] || `Grupo ${emoji.group}`,
+        slug: groupSlugs[emoji.group] || createSlug(spanishGroupNames[emoji.group] || `grupo-${emoji.group}`),
         emojis: [],
       };
     }
@@ -94,4 +108,14 @@ export function getEmojiByUnicode(hexcode: string): SpanishEmojiData | undefined
 export function getEmojiBySlug(slug: string): SpanishEmojiData | undefined {
   const enhancedData = enhanceEmojiData();
   return enhancedData.find(emoji => emoji.slug === slug);
+}
+
+export function getGroupBySlug(slug: string): EmojiGroup | undefined {
+  const groups = getEmojiGroups();
+  return groups.find(group => group.slug === slug);
+}
+
+export function getGroupById(id: number): EmojiGroup | undefined {
+  const groups = getEmojiGroups();
+  return groups.find(group => group.id === id);
 }

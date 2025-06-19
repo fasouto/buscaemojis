@@ -23,6 +23,7 @@ export interface EmojiGroup {
   id: number;
   name: string;
   spanishName: string;
+  slug: string;
   emojis: SpanishEmojiData[];
 }
 

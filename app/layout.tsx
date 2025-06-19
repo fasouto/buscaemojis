@@ -64,39 +64,39 @@ export default function RootLayout({
                             <div className="absolute left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                               <div className="p-2">
                                 <div className="space-y-1">
-                                  <a href="/categorias/0" className="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors">
+                                  <a href="/categorias/caritas-y-emociones" className="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors">
                                     <span className="text-xl">😀</span>
                                     <span className="text-sm font-medium text-gray-900">Caritas y emociones</span>
                                   </a>
-                                  <a href="/categorias/1" className="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors">
+                                  <a href="/categorias/personas-y-cuerpo" className="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors">
                                     <span className="text-xl">👋</span>
                                     <span className="text-sm font-medium text-gray-900">Personas y cuerpo</span>
                                   </a>
-                                  <a href="/categorias/3" className="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors">
+                                  <a href="/categorias/animales-y-naturaleza" className="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors">
                                     <span className="text-xl">🐱</span>
                                     <span className="text-sm font-medium text-gray-900">Animales y naturaleza</span>
                                   </a>
-                                  <a href="/categorias/4" className="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors">
+                                  <a href="/categorias/comida-y-bebida" className="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors">
                                     <span className="text-xl">🍕</span>
                                     <span className="text-sm font-medium text-gray-900">Comida y bebida</span>
                                   </a>
-                                  <a href="/categorias/5" className="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors">
+                                  <a href="/categorias/viajes-y-lugares" className="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors">
                                     <span className="text-xl">✈️</span>
                                     <span className="text-sm font-medium text-gray-900">Viajes y lugares</span>
                                   </a>
-                                  <a href="/categorias/6" className="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors">
+                                  <a href="/categorias/actividades" className="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors">
                                     <span className="text-xl">⚽</span>
                                     <span className="text-sm font-medium text-gray-900">Actividades</span>
                                   </a>
-                                  <a href="/categorias/7" className="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors">
+                                  <a href="/categorias/objetos" className="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors">
                                     <span className="text-xl">📱</span>
                                     <span className="text-sm font-medium text-gray-900">Objetos</span>
                                   </a>
-                                  <a href="/categorias/8" className="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors">
+                                  <a href="/categorias/simbolos" className="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors">
                                     <span className="text-xl">❤️</span>
                                     <span className="text-sm font-medium text-gray-900">Símbolos</span>
                                   </a>
-                                  <a href="/categorias/9" className="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors">
+                                  <a href="/categorias/banderas" className="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors">
                                     <span className="text-xl">🇪🇸</span>
                                     <span className="text-sm font-medium text-gray-900">Banderas</span>
                                   </a>

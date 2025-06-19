@@ -1,0 +1,15 @@
+{
+  "name": "buscaemojis-scripts",
+  "version": "1.0.0",
+  "description": "AI enhancement scripts for BuscaEmojis",
+  "scripts": {
+    "enhance": "node enhance-emojis.js",
+    "enhance:sample": "MAX_EMOJIS=50 node enhance-emojis.js",
+    "enhance:continue": "START_INDEX=500 node enhance-emojis.js",
+    "enhance:small-batch": "BATCH_SIZE=3 node enhance-emojis.js",
+    "check-progress": "node -e \"const data = require('../lib/spanish-emoji-data.json'); console.log('Processed:', Object.keys(data).length, 'emojis');\""
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

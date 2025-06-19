@@ -1,0 +1,41 @@
+{
+  "name": "buscaemojis",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "enhance": "node scripts/enhance-emojis.js",
+    "enhance:sample": "MAX_EMOJIS=50 node scripts/enhance-emojis.js",
+    "enhance:test": "MAX_EMOJIS=10 node scripts/enhance-emojis.js",
+    "enhance:continue": "START_INDEX=500 node scripts/enhance-emojis.js",
+    "enhance:small-batch": "BATCH_SIZE=3 node scripts/enhance-emojis.js",
+    "enhance:overwrite": "OVERWRITE=true node scripts/enhance-emojis.js",
+    "enhance:overwrite-sample": "OVERWRITE=true MAX_EMOJIS=50 node scripts/enhance-emojis.js",
+    "check-progress": "node -e \"try { const data = require('./lib/spanish-emoji-data.json'); console.log('Processed:', Object.keys(data).length, 'emojis'); } catch(e) { console.log('No data found yet'); }\""
+  },
+  "dependencies": {
+    "next": "14.0.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "emojibase": "^15.3.0",
+    "emojibase-data": "^15.3.0",
+    "fuse.js": "^7.0.0",
+    "lucide-react": "^0.294.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.0",
+    "tailwindcss": "^3.4.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31"
+  }
+}

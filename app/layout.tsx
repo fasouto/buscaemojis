@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import ToastProvider from '@/components/ToastProvider'
 import ConditionalNavbarSearch from '@/components/ConditionalNavbarSearch'
+import MobileMenu from '@/components/MobileMenu'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -110,6 +111,10 @@ export default function RootLayout({
                           <a href="/" className="text-white hover:bg-slate-600/75 rounded-md px-3 py-2 text-sm font-medium">
                             Inicio
                           </a>
+                          <a href="/mezclar" className="text-white hover:bg-slate-600/75 rounded-md px-3 py-2 text-sm font-medium flex items-center space-x-1">
+                            <span>🔀</span>
+                            <span>Mezclar</span>
+                          </a>
                           <div className="relative group">
                             <button className="text-white hover:bg-slate-600/75 rounded-md px-3 py-2 text-sm font-medium flex items-center space-x-1">
                               <span>Categorías</span>
@@ -171,8 +176,11 @@ export default function RootLayout({
                       </div>
                     </div>
                     
-                    {/* Search Bar */}
-                    <ConditionalNavbarSearch />
+                    {/* Search Bar and Mobile Menu */}
+                    <div className="flex items-center space-x-2">
+                      <ConditionalNavbarSearch />
+                      <MobileMenu />
+                    </div>
                   </div>
                 </div>
               </nav>

@@ -78,12 +78,20 @@ export default async function EmojiPage({ params }: EmojiPageProps) {
             {emoji.spanishDescription}
           </p>
           
-          <div className="flex justify-center">
+          <div className="flex justify-center space-x-4">
             <CopyButton 
               emoji={emoji.emoji} 
               title={emoji.spanishTitle}
               size="large"
             />
+            
+            <Link
+              href={`/mezclar?e1=${encodeURIComponent(emoji.emoji)}`}
+              className="inline-flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+            >
+              <span>🔀</span>
+              <span>Mezclar este emoji</span>
+            </Link>
           </div>
         </div>
 

@@ -18,24 +18,25 @@
     "check-progress": "node -e \"try { const data = require('./lib/spanish-emoji-data.json'); console.log('Processed:', Object.keys(data).length, 'emojis'); } catch(e) { console.log('No data found yet'); }\""
   },
   "dependencies": {
-    "next": "14.0.0",
-    "react": "^18",
-    "react-dom": "^18",
+    "dotenv": "^16.3.1",
+    "emoji-mixer": "^1.2.2",
     "emojibase": "^15.3.0",
     "emojibase-data": "^15.3.0",
     "fuse.js": "^7.0.0",
     "lucide-react": "^0.294.0",
-    "dotenv": "^16.3.1"
+    "next": "14.0.0",
+    "react": "^18",
+    "react-dom": "^18"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "autoprefixer": "^10.4.16",
     "eslint": "^8",
     "eslint-config-next": "14.0.0",
+    "postcss": "^8.4.31",
     "tailwindcss": "^3.4.0",
-    "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.31"
+    "typescript": "^5"
   }
 }

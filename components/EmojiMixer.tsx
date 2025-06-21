@@ -92,6 +92,7 @@ export default function EmojiMixer({ emojis, groups, initialEmoji1, initialEmoji
         MixHistory.save(mix);
         setRecentMixes(MixHistory.getRecent(20));
         
+        
         // Navigate to slug URL for better sharing (only if not already there)
         const slug = createEmojiSlug(selectedEmoji1.emoji, selectedEmoji2.emoji);
         const currentPath = window.location.pathname;
@@ -103,6 +104,7 @@ export default function EmojiMixer({ emojis, groups, initialEmoji1, initialEmoji
       } else {
         setCurrentMix(null);
         setError('Lamentablemente estos emojis no se pueden mezclar');
+        
       }
     } catch (err) {
       setCurrentMix(null);
@@ -114,6 +116,7 @@ export default function EmojiMixer({ emojis, groups, initialEmoji1, initialEmoji
 
   const randomizeEmojis = async () => {
     setIsRandomizing(true);
+    
     
     try {
       const maxAttempts = 5;

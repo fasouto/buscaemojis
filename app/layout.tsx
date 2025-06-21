@@ -4,6 +4,7 @@ import './globals.css'
 import ToastProvider from '@/components/ToastProvider'
 import ConditionalNavbarSearch from '@/components/ConditionalNavbarSearch'
 import MobileMenu from '@/components/MobileMenu'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -89,6 +90,7 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
+        <GoogleAnalytics />
         <ToastProvider>
           <div className="min-h-full">
             {/* Header with brand color background */}

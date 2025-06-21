@@ -31,9 +31,17 @@ export default function EmojiMixer({ emojis, groups, initialEmoji1, initialEmoji
   // Filter to only mixer-friendly emojis for better success rate
   const mixerFriendlyEmojis = MixerEngine.filterMixerFriendlyEmojis(emojis);
 
+  // Normalize emoji by removing variation selectors that cause URL encoding issues
+  const normalizeEmoji = (emoji: string): string => {
+    // Remove Variation Selector-16 (U+FE0F) which causes %EF%B8%8F in URLs
+    return emoji.replace(/\uFE0F/g, '');
+  };
+
   // Create emoji slug for URL
   const createEmojiSlug = (emoji1: string, emoji2: string): string => {
-    return `${emoji1}-${emoji2}`;
+    const normalized1 = normalizeEmoji(emoji1);
+    const normalized2 = normalizeEmoji(emoji2);
+    return `${normalized1}-${normalized2}`;
   };
 
   // Load recent mixes and detect screen size on component mount
@@ -286,7 +294,7 @@ export default function EmojiMixer({ emojis, groups, initialEmoji1, initialEmoji
 
           {/* Plus/Random Button */}
           <div className="flex flex-col items-center space-y-3">
-            <div className="text-2xl sm:text-3xl text-gray-400">+</div>
+            <div className="text-3xl sm:text-4xl text-gray-600 font-bold">+</div>
             <button
               onClick={() => {
                 randomizeEmojis();
@@ -367,7 +375,6 @@ export default function EmojiMixer({ emojis, groups, initialEmoji1, initialEmoji
         {/* Result Display */}
         {(isLoading || currentMix || error) && (
           <div className="text-center">
-            <div className="text-3xl sm:text-4xl text-gray-400 mb-4">‖</div>
             
             {isLoading && (
               <div className="space-y-4">

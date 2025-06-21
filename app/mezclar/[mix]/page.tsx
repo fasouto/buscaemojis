@@ -15,19 +15,29 @@ function parseEmojisFromMix(mixParam: string): { emoji1: string; emoji2: string 
     // First decode the URL parameter
     const decoded = decodeURIComponent(mixParam);
     
+    // Normalize function to handle variation selectors
+    const normalizeEmoji = (emoji: string): string => {
+      // Remove Variation Selector-16 (U+FE0F) for consistent matching
+      return emoji.replace(/\uFE0F/g, '');
+    };
+    
     // Simple approach: split on dash and take first and last parts
     const parts = decoded.split('-');
     
     if (parts.length >= 2) {
       // Take the first part as emoji1 and join the rest as emoji2
       // This handles cases where emoji2 might contain dashes in its encoding
-      const emoji1 = parts[0];
-      const emoji2 = parts.slice(1).join('-');
+      let emoji1 = parts[0].trim();
+      let emoji2 = parts.slice(1).join('-').trim();
+      
+      // Normalize both emojis to ensure consistent matching with emoji data
+      emoji1 = normalizeEmoji(emoji1);
+      emoji2 = normalizeEmoji(emoji2);
       
       if (emoji1 && emoji2) {
         return {
-          emoji1: emoji1.trim(),
-          emoji2: emoji2.trim()
+          emoji1,
+          emoji2
         };
       }
     }
@@ -47,8 +57,24 @@ async function getMixData(mixParam: string) {
     return null;
   }
   
-  const emoji1Data = emojis.find(e => e.emoji === parsedEmojis.emoji1);
-  const emoji2Data = emojis.find(e => e.emoji === parsedEmojis.emoji2);
+  // Helper function to normalize emojis for matching
+  const normalizeEmoji = (emoji: string): string => {
+    return emoji.replace(/\uFE0F/g, '');
+  };
+  
+  // Try to find emoji data by exact match first, then by normalized match
+  const findEmojiData = (targetEmoji: string) => {
+    // First try exact match
+    let found = emojis.find(e => e.emoji === targetEmoji);
+    if (found) return found;
+    
+    // If not found, try matching with normalized versions
+    found = emojis.find(e => normalizeEmoji(e.emoji) === normalizeEmoji(targetEmoji));
+    return found;
+  };
+  
+  const emoji1Data = findEmojiData(parsedEmojis.emoji1);
+  const emoji2Data = findEmojiData(parsedEmojis.emoji2);
   
   if (!emoji1Data || !emoji2Data) {
     return null;

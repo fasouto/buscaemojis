@@ -18,13 +18,18 @@ export default function QuickEmojiGrid({ emojis, groups, onEmojiSelect, initialS
   );
   const [showAllInCategory, setShowAllInCategory] = useState(false);
 
-  // Popular emojis for quick selection (most commonly used in mixing)
+  // Popular emojis optimized for mixing (funny + commonly used combinations)
   const popularEmojis = [
-    '😀', '😊', '😍', '😂', '😭', '😡', '🤔', '😴',
-    '❤️', '🔥', '⭐', '💯', '👍', '👎', '🙌', '👋',
-    '🐱', '🐶', '🦄', '🐧', '🦊', '🐼', '🐸', '🦖',
-    '🍕', '🍎', '🍰', '🍔', '🌮', '🥘', '🍷', '☕',
-    '🎉', '🎊', '🎁', '🌟', '🎈', '🎵', '⚽', '🏆'
+    // Top faces - very mixable and expressive
+    '😀', '😊', '😍', '😂', '🤣', '😭', '😡', '🤔', '😴', '🤯', '🥵', '🤮',
+    // Essential expressions
+    '❤️', '🔥', '💯', '👍', '👎', '🙌', '👋', '🤝', '💪', '🧠', '👀', '💀',
+    // Fun animals for mixing
+    '🐱', '🐶', '🦄', '🐧', '🦊', '🐼', '🐸', '🦖', '🐸', '🦁', '🐢', '🦋',
+    // Food that creates funny mixes
+    '🍕', '🍎', '🍰', '🍔', '🌮', '🥘', '🍷', '☕', '🍌', '🌶️', '🧄', '🥚',
+    // Party & celebration
+    '🎉', '🎊', '🎁', '🌟', '🎈', '⚽', '🏆', '🎯'
   ];
 
   // Get emoji data for popular emojis
@@ -110,7 +115,7 @@ export default function QuickEmojiGrid({ emojis, groups, onEmojiSelect, initialS
 
       {/* Show More / Advanced Options */}
       <div className="text-center">
-        {selectedCategory !== null && !showAllInCategory && categoryEmojis.length > 80 ? (
+        {selectedCategory !== null && !showAllInCategory && categoryEmojis.length > 80 && (
           <button
             onClick={() => setShowAllInCategory(true)}
             className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center space-x-1 mx-auto"
@@ -120,22 +125,7 @@ export default function QuickEmojiGrid({ emojis, groups, onEmojiSelect, initialS
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-        ) : selectedCategory === null ? (
-          <button
-            onClick={() => setShowAdvanced(!showAdvanced)}
-            className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center space-x-1 mx-auto"
-          >
-            <span>{showAdvanced ? 'Cerrar' : 'Buscar emoji'}</span>
-            <svg 
-              className={`w-4 h-4 transition-transform ${showAdvanced ? 'rotate-180' : ''}`}
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-        ) : null}
+        )}
       </div>
 
       {/* Advanced Selector (Modal-like) */}

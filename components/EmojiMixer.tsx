@@ -238,7 +238,7 @@ export default function EmojiMixer({ emojis, groups, initialEmoji1, initialEmoji
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-4 sm:p-6 space-y-6 sm:space-y-8">
+    <div className="max-w-6xl mx-auto p-4 sm:p-6 space-y-6 sm:space-y-8 overflow-x-hidden">
       {/* Header */}
       <div className="text-center">
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 sm:mb-4">
@@ -250,8 +250,8 @@ export default function EmojiMixer({ emojis, groups, initialEmoji1, initialEmoji
       </div>
 
       {/* Hero Section - Main Mixing Interface */}
-      <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 sm:p-8">
-        <div className="flex items-center justify-center space-x-4 sm:space-x-8 mb-6">
+      <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-4 sm:p-6 lg:p-8">
+        <div className="flex items-center justify-center space-x-2 sm:space-x-4 lg:space-x-8 mb-6">
           {/* First Emoji */}
           <div className="relative">
             <button
@@ -259,18 +259,18 @@ export default function EmojiMixer({ emojis, groups, initialEmoji1, initialEmoji
                 setShowSelector1(!showSelector1);
                 setShowSelector2(false);
               }}
-              className={`w-24 h-24 sm:w-32 sm:h-32 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center border-2 ${showSelector1 ? 'border-blue-500' : 'border-transparent hover:border-blue-300'}`}
+              className={`w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center border-2 ${showSelector1 ? 'border-blue-500' : 'border-transparent hover:border-blue-300'}`}
             >
               {selectedEmoji1 ? (
-                <span className="text-5xl sm:text-6xl">{selectedEmoji1.emoji}</span>
+                <span className="text-3xl sm:text-4xl lg:text-6xl">{selectedEmoji1.emoji}</span>
               ) : (
-                <span className="text-3xl sm:text-4xl text-gray-400">➕</span>
+                <span className="text-2xl sm:text-3xl lg:text-4xl text-gray-400">➕</span>
               )}
             </button>
             
             {/* First Emoji Selector */}
             {showSelector1 && (
-              <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 bg-white rounded-2xl shadow-2xl border border-gray-200 z-50 w-80 sm:w-96">
+              <div className="fixed inset-x-4 top-1/2 transform -translate-y-1/2 sm:absolute sm:top-full sm:left-1/2 sm:transform sm:-translate-x-1/2 sm:translate-y-0 mt-0 sm:mt-4 bg-white rounded-2xl shadow-2xl border border-gray-200 z-50 sm:w-80 lg:w-96">
                 <div className="relative p-4">
                   <button
                     onClick={() => setShowSelector1(false)}
@@ -296,15 +296,15 @@ export default function EmojiMixer({ emojis, groups, initialEmoji1, initialEmoji
           </div>
 
           {/* Plus/Random Button */}
-          <div className="flex flex-col items-center space-y-3">
-            <div className="text-3xl sm:text-4xl text-gray-600 font-bold">+</div>
+          <div className="flex flex-col items-center space-y-2 sm:space-y-3">
+            <div className="text-2xl sm:text-3xl lg:text-4xl text-gray-600 font-bold">+</div>
             <button
               onClick={() => {
                 randomizeEmojis();
                 setShowInitialHint(false);
               }}
               disabled={isRandomizing}
-              className={`px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-2xl hover:from-purple-600 hover:to-blue-600 transition-all duration-300 flex items-center space-x-2 font-bold text-base sm:text-lg disabled:opacity-50 shadow-lg hover:shadow-xl transform hover:scale-105 ${showInitialHint && !currentMix ? 'animate-pulse' : ''}`}
+              className={`px-3 py-2 sm:px-6 sm:py-3 lg:px-8 lg:py-4 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-xl sm:rounded-2xl hover:from-purple-600 hover:to-blue-600 transition-all duration-300 flex items-center space-x-1 sm:space-x-2 font-bold text-sm sm:text-base lg:text-lg disabled:opacity-50 shadow-lg hover:shadow-xl transform hover:scale-105 ${showInitialHint && !currentMix ? 'animate-pulse' : ''}`}
             >
               {isRandomizing ? (
                 <>
@@ -313,8 +313,8 @@ export default function EmojiMixer({ emojis, groups, initialEmoji1, initialEmoji
                 </>
               ) : (
                 <>
-                  <span className="text-xl sm:text-2xl">🎲</span>
-                  <span>Sorpréndeme</span>
+                  <span className="hidden sm:inline">Sorpréndeme</span>
+                  <span className="sm:hidden">Sorpresa</span>
                 </>
               )}
             </button>
@@ -327,18 +327,18 @@ export default function EmojiMixer({ emojis, groups, initialEmoji1, initialEmoji
                 setShowSelector2(!showSelector2);
                 setShowSelector1(false);
               }}
-              className={`w-24 h-24 sm:w-32 sm:h-32 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center border-2 ${showSelector2 ? 'border-blue-500' : 'border-transparent hover:border-blue-300'}`}
+              className={`w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center border-2 ${showSelector2 ? 'border-blue-500' : 'border-transparent hover:border-blue-300'}`}
             >
               {selectedEmoji2 ? (
-                <span className="text-5xl sm:text-6xl">{selectedEmoji2.emoji}</span>
+                <span className="text-3xl sm:text-4xl lg:text-6xl">{selectedEmoji2.emoji}</span>
               ) : (
-                <span className="text-3xl sm:text-4xl text-gray-400">➕</span>
+                <span className="text-2xl sm:text-3xl lg:text-4xl text-gray-400">➕</span>
               )}
             </button>
             
             {/* Second Emoji Selector */}
             {showSelector2 && (
-              <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 bg-white rounded-2xl shadow-2xl border border-gray-200 z-50 w-80 sm:w-96">
+              <div className="fixed inset-x-4 top-1/2 transform -translate-y-1/2 sm:absolute sm:top-full sm:left-1/2 sm:transform sm:-translate-x-1/2 sm:translate-y-0 mt-0 sm:mt-4 bg-white rounded-2xl shadow-2xl border border-gray-200 z-50 sm:w-80 lg:w-96">
                 <div className="relative p-4">
                   <button
                     onClick={() => setShowSelector2(false)}

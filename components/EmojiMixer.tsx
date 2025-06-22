@@ -238,20 +238,20 @@ export default function EmojiMixer({ emojis, groups, initialEmoji1, initialEmoji
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-4 sm:p-6 space-y-6 sm:space-y-8 overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 p-2 sm:p-4">
       {/* Header */}
-      <div className="text-center">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 sm:mb-4">
+      <div className="text-center mb-8">
+        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
           🧪 Laboratorio de Emojis
         </h1>
-        <p className="text-base sm:text-lg text-gray-600">
+        <p className="text-lg sm:text-xl text-gray-600">
           Experimenta con mezclas sorprendentes
         </p>
       </div>
 
-      {/* Hero Section - Main Mixing Interface */}
-      <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-4 sm:p-6 lg:p-8">
-        <div className="flex items-center justify-center space-x-2 sm:space-x-4 lg:space-x-8 mb-6">
+      {/* Main Mixing Interface */}
+      <div className="max-w-4xl mx-auto">
+        <div className="flex items-center justify-center space-x-4 sm:space-x-8 lg:space-x-12 mb-8">
           {/* First Emoji */}
           <div className="relative">
             <button
@@ -259,12 +259,12 @@ export default function EmojiMixer({ emojis, groups, initialEmoji1, initialEmoji
                 setShowSelector1(!showSelector1);
                 setShowSelector2(false);
               }}
-              className={`w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center border-2 ${showSelector1 ? 'border-blue-500' : 'border-transparent hover:border-blue-300'}`}
+              className={`w-24 h-24 sm:w-32 sm:h-32 lg:w-40 lg:h-40 bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 flex items-center justify-center border-3 ${showSelector1 ? 'border-blue-500' : 'border-transparent hover:border-blue-300'}`}
             >
               {selectedEmoji1 ? (
-                <span className="text-3xl sm:text-4xl lg:text-6xl">{selectedEmoji1.emoji}</span>
+                <span className="text-4xl sm:text-5xl lg:text-7xl">{selectedEmoji1.emoji}</span>
               ) : (
-                <span className="text-2xl sm:text-3xl lg:text-4xl text-gray-400">➕</span>
+                <span className="text-3xl sm:text-4xl lg:text-5xl text-gray-400">➕</span>
               )}
             </button>
             
@@ -296,15 +296,15 @@ export default function EmojiMixer({ emojis, groups, initialEmoji1, initialEmoji
           </div>
 
           {/* Plus/Random Button */}
-          <div className="flex flex-col items-center space-y-2 sm:space-y-3">
-            <div className="text-2xl sm:text-3xl lg:text-4xl text-gray-600 font-bold">+</div>
+          <div className="flex flex-col items-center space-y-3 sm:space-y-4">
+            <div className="text-3xl sm:text-4xl lg:text-5xl text-gray-500 font-light">+</div>
             <button
               onClick={() => {
                 randomizeEmojis();
                 setShowInitialHint(false);
               }}
               disabled={isRandomizing}
-              className={`px-3 py-2 sm:px-6 sm:py-3 lg:px-8 lg:py-4 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-xl sm:rounded-2xl hover:from-purple-600 hover:to-blue-600 transition-all duration-300 flex items-center space-x-1 sm:space-x-2 font-bold text-sm sm:text-base lg:text-lg disabled:opacity-50 shadow-lg hover:shadow-xl transform hover:scale-105 ${showInitialHint && !currentMix ? 'animate-pulse' : ''}`}
+              className={`px-6 py-4 sm:px-8 sm:py-5 lg:px-10 lg:py-6 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-2xl sm:rounded-3xl hover:from-purple-600 hover:to-blue-600 transition-all duration-300 flex items-center space-x-2 font-bold text-base sm:text-lg lg:text-xl disabled:opacity-50 shadow-xl hover:shadow-2xl transform hover:scale-105 ${showInitialHint && !currentMix ? 'animate-pulse' : ''}`}
             >
               {isRandomizing ? (
                 <>
@@ -327,12 +327,12 @@ export default function EmojiMixer({ emojis, groups, initialEmoji1, initialEmoji
                 setShowSelector2(!showSelector2);
                 setShowSelector1(false);
               }}
-              className={`w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center border-2 ${showSelector2 ? 'border-blue-500' : 'border-transparent hover:border-blue-300'}`}
+              className={`w-24 h-24 sm:w-32 sm:h-32 lg:w-40 lg:h-40 bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 flex items-center justify-center border-3 ${showSelector2 ? 'border-blue-500' : 'border-transparent hover:border-blue-300'}`}
             >
               {selectedEmoji2 ? (
-                <span className="text-3xl sm:text-4xl lg:text-6xl">{selectedEmoji2.emoji}</span>
+                <span className="text-4xl sm:text-5xl lg:text-7xl">{selectedEmoji2.emoji}</span>
               ) : (
-                <span className="text-2xl sm:text-3xl lg:text-4xl text-gray-400">➕</span>
+                <span className="text-3xl sm:text-4xl lg:text-5xl text-gray-400">➕</span>
               )}
             </button>
             
@@ -377,68 +377,68 @@ export default function EmojiMixer({ emojis, groups, initialEmoji1, initialEmoji
 
         {/* Result Display */}
         {(isLoading || currentMix || error) && (
-          <div className="text-center">
+          <div className="text-center bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-gray-100 mt-8">
             
             {isLoading && (
-              <div className="space-y-4">
-                <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
-                <p className="text-gray-600">Creando mezcla...</p>
+              <div className="space-y-6">
+                <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
+                <p className="text-gray-600 text-lg font-medium">Creando mezcla...</p>
               </div>
             )}
 
             {error && (
-              <div className="space-y-2">
-                <div className="text-4xl sm:text-5xl">❌</div>
-                <p className="text-red-600 font-medium text-sm sm:text-base">{error}</p>
+              <div className="space-y-4">
+                <div className="text-6xl sm:text-7xl">❌</div>
+                <p className="text-red-600 font-medium text-base sm:text-lg">{error}</p>
               </div>
             )}
 
             {currentMix && (
-              <div className="space-y-4">
+              <div className="space-y-6">
                 {currentMix.imageUrl ? (
                   <img 
                     src={currentMix.imageUrl} 
                     alt={currentMix.spanishName}
-                    className="w-32 h-32 sm:w-40 sm:h-40 mx-auto"
+                    className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 mx-auto rounded-3xl shadow-lg"
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
                     }}
                   />
                 ) : (
-                  <div className="w-32 h-32 sm:w-40 sm:h-40 mx-auto flex items-center justify-center bg-gradient-to-r from-blue-100 to-purple-100 rounded-2xl border-2 border-blue-200">
-                    <div className="flex items-center space-x-2">
-                      <span className="text-2xl sm:text-3xl">{currentMix.emoji1}</span>
-                      <span className="text-lg sm:text-xl text-blue-500">+</span>
-                      <span className="text-2xl sm:text-3xl">{currentMix.emoji2}</span>
+                  <div className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 mx-auto flex items-center justify-center bg-gradient-to-r from-blue-100 to-purple-100 rounded-3xl border-3 border-blue-300 shadow-lg">
+                    <div className="flex items-center space-x-3">
+                      <span className="text-4xl sm:text-5xl lg:text-6xl">{currentMix.emoji1}</span>
+                      <span className="text-2xl sm:text-3xl lg:text-4xl text-blue-500 font-bold">+</span>
+                      <span className="text-4xl sm:text-5xl lg:text-6xl">{currentMix.emoji2}</span>
                     </div>
                   </div>
                 )}
                 
                 <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1">
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
                     {currentMix.spanishName.charAt(0).toUpperCase() + currentMix.spanishName.slice(1)}
                   </h3>
-                  <p className="text-sm sm:text-base text-gray-600">
+                  <p className="text-base sm:text-lg lg:text-xl text-gray-600">
                     {currentMix.spanishDescription.charAt(0).toUpperCase() + currentMix.spanishDescription.slice(1)}
                   </p>
                 </div>
 
                 {/* Quick Actions */}
-                <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+                <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
                   {currentMix.imageUrl && (
                     <button
                       onClick={downloadMix}
-                      className="px-3 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors flex items-center space-x-1 text-sm"
+                      className="px-4 py-3 bg-blue-100 text-blue-700 rounded-xl hover:bg-blue-200 transition-colors flex items-center space-x-2 text-base font-medium shadow-md hover:shadow-lg"
                     >
-                      <span>📥</span>
+                      <span className="text-lg">📥</span>
                       <span>Descargar</span>
                     </button>
                   )}
                   <button
                     onClick={shareMix}
-                    className="px-3 py-2 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition-colors flex items-center space-x-1 text-sm"
+                    className="px-4 py-3 bg-green-100 text-green-700 rounded-xl hover:bg-green-200 transition-colors flex items-center space-x-2 text-base font-medium shadow-md hover:shadow-lg"
                   >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
                     </svg>
                     <span>Compartir</span>
@@ -448,47 +448,46 @@ export default function EmojiMixer({ emojis, groups, initialEmoji1, initialEmoji
             )}
           </div>
         )}
+        
+        {currentMix && (
+          <div className="bg-white rounded-xl p-3 mt-4 border border-gray-100">
+            <p className="text-sm text-gray-500 text-center font-medium">
+              Mezcla original: <span className="text-lg">{currentMix.emoji1}</span> + <span className="text-lg">{currentMix.emoji2}</span>
+            </p>
+          </div>
+        )}
       </div>
-
-
-      {currentMix && (
-        <div className="space-y-1">
-          <p className="text-xs text-gray-500 text-center">
-            Mezcla original: {currentMix.emoji1} + {currentMix.emoji2}
-          </p>
-        </div>
-      )}
 
       {/* Recent Mixes - Compact Display */}
       {recentMixes.length > 0 && !showSelector1 && !showSelector2 && (
-        <div className="bg-gray-50 rounded-xl p-4">
-          <div className="flex items-center justify-between mb-3">
-            <h3 className="text-sm font-semibold text-gray-700">Mezclas recientes</h3>
+        <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-lg border border-gray-100 mt-6">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-base sm:text-lg font-semibold text-gray-700">Mezclas recientes</h3>
             <button
               onClick={() => {
                 MixHistory.clear();
                 setRecentMixes([]);
               }}
-              className="text-xs text-gray-500 hover:text-gray-700"
+              className="text-sm text-gray-500 hover:text-gray-700 font-medium"
             >
               Limpiar
             </button>
           </div>
-          <div className="flex overflow-x-auto space-x-3 pb-2">
+          <div className="flex overflow-x-auto space-x-4 pb-2">
             {recentMixes.slice(0, isDesktop ? 16 : 8).map((mix, index) => (
               <button
                 key={`${mix.emoji1}-${mix.emoji2}-${index}`}
                 onClick={() => loadRecentMix(mix)}
-                className="flex-shrink-0 p-2 bg-white rounded-lg hover:shadow-md transition-all group border"
+                className="flex-shrink-0 p-3 bg-gray-50 rounded-xl hover:shadow-md transition-all group border border-gray-200 hover:border-blue-300"
                 title={mix.spanishName}
               >
-                <div className="text-center space-y-1">
+                <div className="text-center space-y-2">
                   <img 
-                    src={MixerEngine.getMixUrl(mix.emoji1, mix.emoji2, 32)}
+                    src={MixerEngine.getMixUrl(mix.emoji1, mix.emoji2, 48)}
                     alt={mix.spanishName}
-                    className="w-6 h-6 mx-auto"
+                    className="w-8 h-8 mx-auto"
                   />
-                  <div className="text-xs text-gray-600 group-hover:text-blue-600 max-w-16 truncate">
+                  <div className="text-xs text-gray-600 group-hover:text-blue-600 max-w-20 truncate font-medium">
                     {mix.emoji1}{mix.emoji2}
                   </div>
                 </div>

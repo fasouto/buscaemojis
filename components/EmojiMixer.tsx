@@ -93,13 +93,13 @@ export default function EmojiMixer({ emojis, groups, initialEmoji1, initialEmoji
         setRecentMixes(MixHistory.getRecent(20));
         
         
-        // Navigate to slug URL for better sharing (only if not already there)
+        // Update URL for better sharing (replace, don't push to history)
         const slug = createEmojiSlug(selectedEmoji1.emoji, selectedEmoji2.emoji);
         const currentPath = window.location.pathname;
         const targetPath = `/mezclar/${slug}`;
         
         if (currentPath !== targetPath) {
-          router.push(targetPath);
+          router.replace(targetPath);
         }
       } else {
         setCurrentMix(null);
@@ -142,7 +142,7 @@ export default function EmojiMixer({ emojis, groups, initialEmoji1, initialEmoji
         try {
           const mix = await MixerEngine.createMix(emoji1, emoji2, 256);
           if (mix) {
-            // Success! Set the emojis and navigate to slug URL
+            // Success! Set the emojis and update URL
             setSelectedEmoji1(emoji1);
             setSelectedEmoji2(emoji2);
             
@@ -151,7 +151,7 @@ export default function EmojiMixer({ emojis, groups, initialEmoji1, initialEmoji
             const targetPath = `/mezclar/${slug}`;
             
             if (currentPath !== targetPath) {
-              router.push(targetPath);
+              router.replace(targetPath);
             }
             return;
           }
@@ -172,13 +172,13 @@ export default function EmojiMixer({ emojis, groups, initialEmoji1, initialEmoji
       setSelectedEmoji1(emoji1);
       setSelectedEmoji2(emoji2);
       
-      // Navigate to slug URL even for fallback
+      // Update URL even for fallback (since we still want shareable URLs)
       const slug = createEmojiSlug(emoji1.emoji, emoji2.emoji);
       const currentPath = window.location.pathname;
       const targetPath = `/mezclar/${slug}`;
       
       if (currentPath !== targetPath) {
-        router.push(targetPath);
+        router.replace(targetPath);
       }
     } finally {
       setIsRandomizing(false);
@@ -238,7 +238,7 @@ export default function EmojiMixer({ emojis, groups, initialEmoji1, initialEmoji
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 p-2 sm:p-4">
+    <div className="p-4 sm:p-6 lg:p-8">
       {/* Header */}
       <div className="text-center mb-8">
         <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
@@ -399,7 +399,7 @@ export default function EmojiMixer({ emojis, groups, initialEmoji1, initialEmoji
                   <img 
                     src={currentMix.imageUrl} 
                     alt={currentMix.spanishName}
-                    className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 mx-auto rounded-3xl shadow-lg"
+                    className="w-60 h-60 sm:w-56 sm:h-56 lg:w-64 lg:h-64 mx-auto"
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
                     }}
